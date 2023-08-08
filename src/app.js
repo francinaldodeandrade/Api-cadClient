@@ -1,3 +1,6 @@
+import dotenv from "dotenv-safe"
+dotenv.config()
+
 import express from "express"
 const app = express()
 
@@ -10,7 +13,7 @@ import db from "./config/database.js";
 db.connect()
 
 import routes from "./routes/usersRoutes.js"
-app.use("/cadastro", routes)
+app.use("/user", routes)
 
 
 export default app
