@@ -1,7 +1,7 @@
 {
-  "name": "user",
+  "name": "cad-prod",
   "version": "1.0.0",
-  "description": "segunda API com node ",
+  "description": "API para cadastro de produtos do projeto tera ",
   "main": "server.js",
   "type": "module",
   "scripts": {

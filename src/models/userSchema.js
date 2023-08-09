@@ -6,7 +6,7 @@ const esquema = new mongoose.Schema({
 
     prod: {
         type: String,
-        required: true },
+        required: true, },
 
     marca: {
         type: String,
@@ -19,7 +19,7 @@ const esquema = new mongoose.Schema({
 
     img: {
         type: String,
-        required: true,
+        required: false,
     },
 
     password: {
@@ -31,4 +31,4 @@ const esquema = new mongoose.Schema({
    { timestamps: true } // armazena a data de cadastro
    );
    
-   export default mongoose.model("user", esquema); // o mongoose cria uma coleção para usuários no BD*/
+   export default mongoose.model("createProd", esquema); // o mongoose cria uma coleção para usuários no BD*/

@@ -3,17 +3,19 @@ import esquema from "../models/userSchema.js"
 //AQUI EU MONTO O CRUD
 
 //GET = lista todos os usuérios do banco de dados
-const getAllProds = async (req, res) => {
-   try {const prods = await esquema.find();  
+
+const getAll = async (req, res) => {
+   try {const Prod = await esquema.find();  
     /*if (!users) {
         res.status(500).send(
             {statusCode: 500,
             message: err.message,});
         }*/
+       
         
         res.status(200).send({ 
             statusCode: 200,
-            data: {prods,},
+            data: {Prod,},
         }
         );
    } catch (e) {
@@ -22,20 +24,20 @@ const getAllProds = async (req, res) => {
 
 } 
 
-const createProds = async (req, res) => {
+const createProd = async (req, res) => {
 
     const hash = bcrypt.hashSync(req.body.password, 8);
     req.body.password = hash;
     
     try {
-        const newProds = new esquema(req.body);
+        const newProd = new esquema(req.body);
 
-        const savedProds = await newProds.save();
+        const savedProd = await newUsers.save();
 
         res.status(201).send({
             statusCode: 201,
             data: {
-                savedProds,
+                savedProd,
             },
         }
         );
@@ -51,8 +53,8 @@ const createProds = async (req, res) => {
 
 
 export default {
-    getAllProds,
-    createProds,
+    getAll,
+    createProd,
 }
 
 
