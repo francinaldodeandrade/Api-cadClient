@@ -3,8 +3,8 @@ import esquema from "../models/userSchema.js"
 //AQUI EU MONTO O CRUD
 
 //GET = lista todos os usuérios do banco de dados
-const getAll = async (req, res) => {
-   try {const users = await esquema.find();  
+const getAllProds = async (req, res) => {
+   try {const prods = await esquema.find();  
     /*if (!users) {
         res.status(500).send(
             {statusCode: 500,
@@ -13,7 +13,7 @@ const getAll = async (req, res) => {
         
         res.status(200).send({ 
             statusCode: 200,
-            data: {users,},
+            data: {prods,},
         }
         );
    } catch (e) {
@@ -22,20 +22,20 @@ const getAll = async (req, res) => {
 
 } 
 
-const createUser = async (req, res) => {
+const createProds = async (req, res) => {
 
     const hash = bcrypt.hashSync(req.body.password, 8);
     req.body.password = hash;
     
     try {
-        const newUser = new esquema(req.body);
+        const newProds = new esquema(req.body);
 
-        const savedUser = await newUser.save();
+        const savedProds = await newProds.save();
 
         res.status(201).send({
             statusCode: 201,
             data: {
-                savedUser,
+                savedProds,
             },
         }
         );
@@ -43,7 +43,7 @@ const createUser = async (req, res) => {
         console.error(e);
         res.status(500).send({
             statusCode: 500,
-            message: "User not saved",
+            message: "Produto não cadastrado",
         }); 
     }};    
 
@@ -51,8 +51,8 @@ const createUser = async (req, res) => {
 
 
 export default {
-    getAll,
-    createUser
+    getAllProds,
+    createProds,
 }
 
 

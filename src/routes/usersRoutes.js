@@ -3,8 +3,8 @@ const router = express.Router()
 
 import controllers from "../controllers/usersControllers.js"
 
-router.get("/cad", controllers.getAll)
-router.post("/", controllers.createUser)
+router.get("/", controllers.getAllProds)
+router.post("/cad", controllers.createProds)
 
 export default router
  
