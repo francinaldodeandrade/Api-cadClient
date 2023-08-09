@@ -13,7 +13,7 @@ import db from "./config/database.js";
 db.connect()
 
 import routes from "./routes/usersRoutes.js"
-app.use("/user", routes)
+app.use("/prod", routes)
 
 
 export default app

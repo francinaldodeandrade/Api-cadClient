@@ -3,15 +3,20 @@ import mongoose from "mongoose";
 const esquema = new mongoose.Schema({
     
     id: mongoose.Schema.Types.ObjectId,
-    name: {
+    prod: {
         type: String,
-        required: true,},
+        required: true },
 
-    nickname: {
+    marca: {
         type: String,
     },
 
-    email: {
+    valor: {
+        type: String,
+        required: true,
+    },
+
+    img: {
         type: String,
         required: true,
     },
