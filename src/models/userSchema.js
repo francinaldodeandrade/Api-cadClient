@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const esquema = new mongoose.Schema({
     
     id: mongoose.Schema.Types.ObjectId,
-    
+
     prod: {
         type: String,
         required: true },
@@ -31,4 +31,4 @@ const esquema = new mongoose.Schema({
    { timestamps: true } // armazena a data de cadastro
    );
    
-   export default mongoose.model("prod", esquema); // o mongoose cria uma coleção para usuários no BD*/
+   export default mongoose.model("user", esquema); // o mongoose cria uma coleção para usuários no BD*/
