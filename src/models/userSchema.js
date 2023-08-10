@@ -19,13 +19,8 @@ const esquema = new mongoose.Schema({
 
     img: {
         type: String,
-        required: false,
     },
 
-    password: {
-        type: String,
-        required: true,
-    },
 },
 
    { timestamps: true } // armazena a data de cadastro
