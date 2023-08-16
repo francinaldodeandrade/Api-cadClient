@@ -21,8 +21,7 @@ const getAll = async (req, res) => {
     statusCode: 500,
     message:err.message
 })
-
-   } 
+} 
 
 res.status(200).send({
     statusCode:200,
@@ -32,8 +31,8 @@ res.status(200).send({
 }) 
 
 } catch (err) {
-  console.error(err)
-}
+    console.error(err)
+  }
 }
 
 const createProd = async (req, res) => { //defino que a função é assicrona
