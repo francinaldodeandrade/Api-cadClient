@@ -46,6 +46,7 @@ const createProd = async (req, res) => { //defino que a função é assicrona
         
         res.status(201).send({
             statusCode:201,
+            message:"Produto cadastrado com sucesso",
             data:{
             savedProd,
         }
@@ -63,9 +64,104 @@ const createProd = async (req, res) => { //defino que a função é assicrona
  
 }
 
+//busca de produtos
+
+const SearchById = async (req, res) => {
+    try {
+
+        const product = await esquema.findById(req.params.id).exec();
+
+        res.status(200).json({
+            statusCode: 200,
+            message: "Consulta realizada com sucesso!",
+            data: {
+                product
+            }
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            statusCode: 500,
+            message: "Erro ao executar a consulta",
+            data: {
+                error: error.message
+            }
+        })
+    }
+}
+
+//atualizar produtos
+
+const updateById = async (req, res) => {
+    try {
+
+        const product = await esquema.findOneAndUpdate({
+            _id: req.params.id
+        }, req.body, {
+            new: true
+        });
+
+        res.status(200).json({
+            statusCode: 200,
+            message: "Alteração realizada com sucesso!",
+            data: {
+               product
+            }
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            statusCode: 500,
+            message: "Erro ao executar a consulta",
+            data: {
+                error: error.message
+            }
+        })
+    }
+}
+
+//remove produto
+
+const removeById = async (req, res) => {
+    try {
+
+        const product = await esquema.findByIdAndRemove(req.params.id)
+
+        if(product){
+            res.status(200).json({
+                statusCode: 200,
+                message: "Produto removido!",
+                data: {
+                    product
+                }
+            })
+        }else{
+            res.status(500).json({
+                statusCode: 500,
+                message: "Erro ao executar a consulta",
+                data: { error: "product not exist"}
+            })
+        }
+        
+
+    } catch (error) {
+        res.status(500).json({
+            statusCode: 500,
+            message: "Erro ao executar a consulta",
+            data: {
+                error: error.message
+            }
+        })
+    }
+}
+
+
 export default {
     getAll,
     createProd,
+    SearchById,
+    updateById,
+    removeById
 }
 
 
