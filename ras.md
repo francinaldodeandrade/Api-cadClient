@@ -51,3 +51,5 @@ const createProd = async (req, res) => {
 } catch (e) {
 console.error(e);
 }
+
+URI = mongodb+srv://E-comerceTera:2310-Fas@cluster0.c1s6qzw.mongodb.net/
