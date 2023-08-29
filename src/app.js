@@ -13,7 +13,10 @@ import db from "./config/database.js";
 db.connect()
 
 import routes from "./routes/usersRoutes.js"
-app.use("/", routes)
+app.use("/user", routes)
+
+import clietRoutes from "./routes/clietRoutes.js"
+app.use("/cliet", clietRoutes)
 
 
-export default app
+export default app  
