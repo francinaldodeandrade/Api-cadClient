@@ -18,7 +18,7 @@ const readDialogflow = (req, res) =>{
   }
 
 
-const webhook_dialogflow = async (req, res) =>{
+const webhook_dialogflow = (req, res) =>{
   
   const mensagem = req.body.queryResult.queryText;
   const intencao = req.body.queryResult.intent.displayName;
@@ -27,17 +27,17 @@ const webhook_dialogflow = async (req, res) =>{
 
   switch(intencao) {
     case 'VerCardapio': 
-      resposta = await Model.verCardapio( mensagem, parametros );
+      resposta = Model.verCardapio( mensagem, parametros );
       break;
     case 'verStatus':
       resposta = Model.verStatus( mensagem, parametros );
       break;
     default: 
-      resposta = {tipo: 'texto', mensagem: 'Sinto muito, não entendi o que você quer'}
+      resposta = {tipo: 'texto', mensagem: 'Sinto muito, não entendi o que você deseja'}
   }
 
 
-  let meuCardapio = [];
+  /*let meuCardapio = [];
   let menuItem = {};
 
   for (let i=0; i<resposta.cardapio.length; i++) {
@@ -49,7 +49,7 @@ const webhook_dialogflow = async (req, res) =>{
         }
     }
     meuCardapio.push(menuItem)
-  }
+  }*/
 
 
 if ( resposta.tipo == 'texto') {
@@ -78,13 +78,13 @@ if ( resposta.tipo == 'texto') {
     ],
     "source": "",
   }
-} else if ( resposta.tipo == 'card' ) {
+} /*else if ( resposta.tipo == 'card' ) {
   responder = {
     "fulfillmentText": "Resposta do Webhook",
     "fulfillmentMessages":  meuCardapio,
     "source": "",
   }
-}
+}*/
 
 console.log("resposta final", responder)
 
