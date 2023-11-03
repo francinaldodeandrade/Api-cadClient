@@ -5,7 +5,7 @@ import bodyParser from 'body-parser'
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
-import Model from '../models/dialogflowSchema.js'
+//import Model from '../models/dialogflowSchema.js'
 
 const readDialogflow = (req, res) =>{
   res.status(200).send({
@@ -23,9 +23,50 @@ const webhook_dialogflow = (req, res) =>{
   const mensagem = req.body.queryResult.queryText;
   const intencao = req.body.queryResult.intent.displayName;
   const parametros = req.body.queryResult.parameters;
-  let responder = ""
+  let resposta = ""
 
-  switch(intencao) {
+  if (parametros && parametros.nao_Vendemos) {
+    resposta = `desculpe, nós não trabalhamos com ${parametros.nao_Vendemos}`
+    console.log("body", req.body.queryResult);
+    console.log("responder", resposta);
+    console.log(intencao);
+    console.log(mensagem);    
+  } else if (intencao == 'verCardapio') {
+    fetch("https://api-cadastro.onrender.com/readClient") //API cadastro de clientes
+      .then((response) => response.json())
+      .then((res) => {
+      console.log(res.data.cliets.Name)
+  })
+     
+    responder = res.data.cliets.Name//"nosso cardapio está em fase de preparação"
+    
+  }
+
+  responder = {
+    "fulfillmentText": "Resposta do Webhook",
+    "fulfillmentMessages": [
+      {
+        "text": {
+          "text": [
+            resposta
+          ]
+        }
+      }
+    ],
+    "source": "",
+  }
+
+  console.log("resposta final", responder)
+
+  res.send(responder);
+} 
+
+export default {
+  webhook_dialogflow,
+  readDialogflow
+}
+
+   /*switch(intencao) {
     case 'VerCardapio': 
       resposta = Model.verCardapio( mensagem, parametros );
       break;
@@ -37,7 +78,7 @@ const webhook_dialogflow = (req, res) =>{
   }
 
 
-  /*let meuCardapio = [];
+ let meuCardapio = [];
   let menuItem = {};
 
   for (let i=0; i<resposta.cardapio.length; i++) {
@@ -49,7 +90,7 @@ const webhook_dialogflow = (req, res) =>{
         }
     }
     meuCardapio.push(menuItem)
-  }*/
+  }
 
 
 if ( resposta.tipo == 'texto') {
@@ -86,12 +127,3 @@ if ( resposta.tipo == 'texto') {
   }
 }*/
 
-console.log("resposta final", responder)
-
-  res.send(responder);
-} 
-
-export default {
-  webhook_dialogflow,
-  readDialogflow
-}
