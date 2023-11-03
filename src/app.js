@@ -12,11 +12,19 @@ app.use(cors())
 import db from "./config/database.js";
 db.connect()
 
-import routes from "./routes/usersRoutes.js"
-app.use("/user", routes)
+const root = process.env.ROOT
 
-import clietRoutes from "./routes/clietRoutes.js"
-app.use("/cliet", clietRoutes)
+import routesUser from "./routes/usersRoutes.js"
+app.use(root, routesUser)
+
+import routesClient from "./routes/clietRoutes.js"
+app.use(root,routesClient)
+
+import routeService from './routes/serviceRoutes.js'
+app.use(root, routeService)
+
+import routeDialogflow from './routes/dialogflowRoutes.js'
+app.use(root, routeDialogflow)
 
 
 export default app  

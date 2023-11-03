@@ -1,6 +1,8 @@
 import app from "./src/app.js"
-const PORT = process.env.PORT
 
-app.listen (PORT, () =>{
-    console.log(`servidor executando na porta ${PORT}`);
+const hostName = process.env.HOSTNAME
+const port = process.env.PORT
+
+app.listen (port, () =>{
+    console.log(`servidor executando no seguinte http://${hostName}:${port}`);
 })

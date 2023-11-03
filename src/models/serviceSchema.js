@@ -5,8 +5,8 @@ const esquema = new mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId,
 
     Proc: {
-        type: String,
-        required: true, },
+        type: String
+         },
 
     Prof: {
         type: String,
@@ -17,24 +17,19 @@ const esquema = new mongoose.Schema({
         required: true,
     },
 
-    Hour: {
-        type:  mongoose.Schema.Types.Hour,
-        required: true,
-    },
-
     Client:{
-        type: String,
-        required
+        type: String
+       
     },
 
     Promo:{
-        type: String,
-        required
+        type: String
+        
     },
 
-    price:{
-        type: String,
-        required
+    Price:{
+        type: String
+        
     }
 
 },

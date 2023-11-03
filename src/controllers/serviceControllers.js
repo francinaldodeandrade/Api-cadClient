@@ -1,8 +1,8 @@
 import bcrypt, { hash } from "bcrypt";
-import esquema from "../models/clietSchema.js"
+import esquema from "../models/serviceSchema.js"
 
 //Cria um novo usuário//
-const createCliet = async (req, res) => {
+const createService = async (req, res) => {
     if (req.body.Password) {
         const hash = bcrypt.hashSync(req.body.Password, 10)
         req.body.Password = hash
@@ -24,7 +24,7 @@ const createCliet = async (req, res) => {
 
         res.status(201).json({
             statusCode: 201,
-            message: "cadastro realizado com sucesso",
+            message: "serviço cadastrado com sucesso",
             data: {
                 clietSave
             }
@@ -75,31 +75,7 @@ const createCliet = async (req, res) => {
 }*/
 
 //Mostra todos os usuários//
-const getAll = async (req, res) => {
-    try {
-
-        const cliets = await esquema.find()
-
-        res.status(200).json({
-            statusCode: 200,
-            message: "Buscando todos os clientes!",
-            data: {
-                cliets
-            }
-        }).send( data.cliet)
-
-    } catch (error) {
-        res.status(500).json({
-            statusCode: 500,
-            message: "Lista de cliente não encontrada na base de dados",
-            data: {
-                error: error.message
-            }
-        })
-    }
-}
-
-const getCliet = async (req, res) => {
+const readService = async (req, res) => {
     try {
 
         const cliets = await esquema.find()
@@ -115,7 +91,7 @@ const getCliet = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             statusCode: 500,
-            message: "Lista de cliente não encontrada na base de dados",
+            message: "Lista de serviços não encontrada na base de dados",
             data: {
                 error: error.message
             }
@@ -181,7 +157,7 @@ const updById = async (req, res) => {
 const delById = async (req, res) => {
     try {
 
-        const cliet = await esquema.findByIdAndRemove(req.params._id)
+        const cliet = await esquema.findByIdAndRemove(req.params.id)
 
         if(cliet){
             res.status(200).json({
@@ -213,9 +189,8 @@ const delById = async (req, res) => {
 
 
 export default { 
-    getAll,
-    createCliet,
-    getCliet,
+    createService,
+    readService,
     seaById,
     updById,
     delById

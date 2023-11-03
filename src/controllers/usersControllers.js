@@ -2,18 +2,19 @@
 import esquema from "../models/userSchema.js"
 //AQUI EU MONTO O CRUD
 
-/*const getAll = (req, res) =>{
+const getAll = (req, res) =>{
     res.status(200).send({
-    message:"bateu na rota GET para usuários"
+    message:"comunicação com o back-end estabelecida",
+    texto:"servidor local em execução nesta porta de comunicação"
     })
     
         console.log("comunicação com navegador estabelecida")
     
-    }*/
+    }
 
 //GET = lista todos os usuérios do banco de dados
 
-const getAll = async (req, res) => {
+const readGet = async (req, res) => {
     try{
    const allProd = await esquema.find() // o esquema do produto importado faz uma busca de todos os produtos no banco de dados
    if (!allProd) {
@@ -161,7 +162,8 @@ export default {
     createProd,
     SearchById,
     updateById,
-    removeById
+    removeById,
+    readGet
 }
 
 
