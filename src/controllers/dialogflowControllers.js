@@ -23,22 +23,21 @@ const webhook_dialogflow = (req, res) =>{
   const mensagem = req.body.queryResult.queryText;
   const intencao = req.body.queryResult.intent.displayName;
   const parametros = req.body.queryResult.parameters;
-  let resposta = ""
+  let responder = ""
 
   if (parametros && parametros.nao_Vendemos) {
-    resposta = `desculpe, nós não trabalhamos com ${parametros.nao_Vendemos}`
+
+    responder = `desculpe, nós não trabalhamos com ${parametros.nao_Vendemos}`
     console.log("body", req.body.queryResult);
-    console.log("responder", resposta);
+    console.log("responder", responder);
     console.log(intencao);
-    console.log(mensagem);    
-  } 
-     
-  resposta = "nosso cardapio está em fase de preparação"
+    console.log(mensagem);
     
+  } 
   
 
-  responder = {
-    "fulfillmentText": "Resposta do Webhook",
+  resposta = {
+    "fulfillmentText": "resposta do Webhook",
     "fulfillmentMessages": [
       {
         "text": {
@@ -51,9 +50,9 @@ const webhook_dialogflow = (req, res) =>{
     "source": "",
   }
 
-  console.log("resposta final", resposta)
+  console.log("responder final", responder)
 
-  res.send(resposta);
+  res.send(responder);
 } 
 
 export default {
@@ -63,60 +62,60 @@ export default {
 
    /*switch(intencao) {
     case 'VerCardapio': 
-      resposta = Model.verCardapio( mensagem, parametros );
+      responder = Model.verCardapio( mensagem, parametros );
       break;
     case 'verStatus':
-      resposta = Model.verStatus( mensagem, parametros );
+      responder = Model.verStatus( mensagem, parametros );
       break;
     default: 
-      resposta = {tipo: 'texto', mensagem: 'Sinto muito, não entendi o que você deseja'}
+      responder = {tipo: 'texto', mensagem: 'Sinto muito, não entendi o que você deseja'}
   }
 
 
  let meuCardapio = [];
   let menuItem = {};
 
-  for (let i=0; i<resposta.cardapio.length; i++) {
+  for (let i=0; i<responder.cardapio.length; i++) {
     menuItem = {
         "card": {
-          "title": resposta.cardapio[i].titulo,
-          "subtitle": resposta.cardapio[i].preco,
-          "imageUri": resposta.cardapio[i].url,
+          "title": responder.cardapio[i].titulo,
+          "subtitle": responder.cardapio[i].preco,
+          "imageUri": responder.cardapio[i].url,
         }
     }
     meuCardapio.push(menuItem)
   }
 
 
-if ( resposta.tipo == 'texto') {
+if ( responder.tipo == 'texto') {
   responder = {
-    "fulfillmentText": "Resposta do Webhook",
+    "fulfillmentText": "responder do Webhook",
     "fulfillmentMessages": [
       {
         "text": {
           "text": [
-            resposta.mensagem
+            responder.mensagem
           ]
         }
       }
     ],
     "source": "",
   }
-} else if ( resposta.tipo == 'imagem' ) {
+} else if ( responder.tipo == 'imagem' ) {
   responder = {
-    "fulfillmentText": "Resposta do Webhook",
+    "fulfillmentText": "responder do Webhook",
     "fulfillmentMessages": [
       {
         "image": {
-          "imageUri": resposta.url,
+          "imageUri": responder.url,
         }
       }
     ],
     "source": "",
   }
-} /*else if ( resposta.tipo == 'card' ) {
+} /*else if ( responder.tipo == 'card' ) {
   responder = {
-    "fulfillmentText": "Resposta do Webhook",
+    "fulfillmentText": "responder do Webhook",
     "fulfillmentMessages":  meuCardapio,
     "source": "",
   }
