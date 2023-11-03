@@ -34,6 +34,17 @@ const webhook_dialogflow = (req, res) =>{
     console.log(mensagem);
     
   } 
+
+  if (intencao == 'verStatus') {
+    fetch("https://api-cadastro.onrender.com/readClient") //API cadastro de produtos
+      .then((response) => response.json())
+      .then((res) => {
+      console.log(res.data.cliets)
+  })
+     
+    responder = res.data.cliets.Name
+    
+  }
   
 
   resposta = {
@@ -42,7 +53,7 @@ const webhook_dialogflow = (req, res) =>{
       {
         "text": {
           "text": [
-            "estou na webhook"
+            responder
           ]
         }
       }
@@ -50,9 +61,9 @@ const webhook_dialogflow = (req, res) =>{
     "source": "",
   }
 
-  console.log("responder final", responder)
+  console.log("responder final", resposta)
 
-  res.send(responder);
+  res.send(resposta);
 } 
 
 export default {
