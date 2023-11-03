@@ -31,16 +31,11 @@ const webhook_dialogflow = (req, res) =>{
     console.log("responder", resposta);
     console.log(intencao);
     console.log(mensagem);    
-  } else if (intencao == 'verCardapio') {
-    fetch("https://api-cadastro.onrender.com/readClient") //API cadastro de clientes
-      .then((response) => response.json())
-      .then((res) => {
-      console.log(res.data.cliets.Name)
-  })
+  } 
      
-    responder = res.data.cliets.Name//"nosso cardapio está em fase de preparação"
+  resposta = "nosso cardapio está em fase de preparação"
     
-  }
+  
 
   responder = {
     "fulfillmentText": "Resposta do Webhook",
@@ -48,7 +43,7 @@ const webhook_dialogflow = (req, res) =>{
       {
         "text": {
           "text": [
-            resposta
+            "estou na webhook"
           ]
         }
       }
@@ -56,9 +51,9 @@ const webhook_dialogflow = (req, res) =>{
     "source": "",
   }
 
-  console.log("resposta final", responder)
+  console.log("resposta final", resposta)
 
-  res.send(responder);
+  res.send(resposta);
 } 
 
 export default {
