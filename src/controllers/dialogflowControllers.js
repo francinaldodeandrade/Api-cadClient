@@ -34,9 +34,17 @@ const webhook_dialogflow = (req, res) =>{
     responder = `nosso cardápio está em fase de elaboração`
 
   } else if (intencao == 'verStatus') {
-    
+
     responder = `ainda não temos pedido`
 
+  } else if (intencao == 'fazerPedido') {
+    fetch("https://api-cadastro.onrender.com/readClient") //API cadastro de produtos
+      .then((response) => response.json())
+      .then((res) => {
+      console.log(res.data.cliets)
+  })
+
+    responder = res.data.cliets.Name
   }
 
 
