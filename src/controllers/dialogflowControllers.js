@@ -28,23 +28,21 @@ const webhook_dialogflow = (req, res) =>{
   if (parametros && parametros.nao_Vendemos) {
 
     responder = `desculpe, nós não trabalhamos com ${parametros.nao_Vendemos}`
-    console.log("body", req.body.queryResult);
-    console.log(intencao);
-    console.log(mensagem);
+   
+  } else if (intencao == 'verCardapio') {
+
+    responder = `nosso cardápio está em fase de elaboração`
+
+  } else if (intencao == 'verStatus') {
     
-  } 
-
-  if (intencao == 'verCardapio') {
-    responder = `${responder}, nosso cardápio está em fase de elaboração`
-  }
-
-
-  if (intencao == 'verStatus') {
     responder = `ainda não temos pedido`
+
   }
 
-  return responder
 
+  
+
+  
   /*if (intencao == 'verStatus') {
     fetch("https://api-cadastro.onrender.com/readClient") //API cadastro de produtos
       .then((response) => response.json())
@@ -74,6 +72,7 @@ const webhook_dialogflow = (req, res) =>{
   console.log("responder final", resposta)
 
   res.send(resposta);
+
 } 
 
 export default {
