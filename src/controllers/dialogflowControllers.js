@@ -29,13 +29,20 @@ const webhook_dialogflow = (req, res) =>{
 
     responder = `desculpe, nós não trabalhamos com ${parametros.nao_Vendemos}`
     console.log("body", req.body.queryResult);
-    console.log("responder", responder);
     console.log(intencao);
     console.log(mensagem);
     
   } 
 
+  if (intencao == 'verCardapio') {
+    
+  }
+
   if (intencao == 'verStatus') {
+    
+  }
+
+  /*if (intencao == 'verStatus') {
     fetch("https://api-cadastro.onrender.com/readClient") //API cadastro de produtos
       .then((response) => response.json())
       .then((res) => {
@@ -44,10 +51,10 @@ const webhook_dialogflow = (req, res) =>{
      
     responder = res.data.cliets.Name
     
-  }
+  }*/
   
 
-  resposta = {
+  const resposta = {
     "fulfillmentText": "resposta do Webhook",
     "fulfillmentMessages": [
       {
