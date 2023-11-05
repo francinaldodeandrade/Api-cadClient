@@ -25,25 +25,6 @@ const webhook_dialogflow = (req, res) =>{
   const parametros = req.body.queryResult.parameters;
   const responder = ""
 
-  const verCardapio = () =>{
-    let resp = { 
-      tipo:"imagem", 
-      mensagem:"olá de dentro da função imagem"
-    }
-
-    return resp
-
-  }
-
-  const verStatus = () =>{
-    let resp = { 
-      tipo:"texto", 
-      mensagem:"olá de dentro da função texto"
-    }
-
-    return resp
-
-  }
 
   if (parametros && parametros.nao_Vendemos) {
 
@@ -52,11 +33,11 @@ const webhook_dialogflow = (req, res) =>{
    
   } else if (intencao == 'verCardapio') {
 
-    responder = verCardapio ()//`nosso cardápio está em fase de elaboração`
+    responder = `nosso cardápio está em fase de elaboração`
 
   } else if (intencao == 'verStatus') {
 
-    responder = verStatus()//`ainda não temos pedido`
+    responder = `ainda não temos pedido`
 
   } else if (intencao == 'fazerPedido') {
     fetch("https://api-cadastro.onrender.com/readClient") //API cadastro de produtos
