@@ -7,6 +7,14 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 //import Model from '../models/dialogflowSchema.js'
 
+/*fetch("https://api-cadastro.onrender.com/readClient") //API cadastro de produtos
+.then((response) => response.data.cliet())
+
+const Cliet = response.data.cliet
+
+console.log(Cliet)*/
+
+
 const readDialogflow = (req, res) =>{
   res.status(200).send({
   message:"comunicação com o dialogflow estabelecida com sucesso",
@@ -39,17 +47,7 @@ const webhook_dialogflow = (req, res) =>{
 
     responder = `ainda não temos pedido`
 
-  } else if (intencao == 'fazerPedido') {
-    fetch("https://api-cadastro.onrender.com/readClient") //API cadastro de produtos
-      .then((response) => response.json())
-      
-
-    responder = res.data.cliets.Name
-  }
-
-
-  
-
+  } 
   
   /*if (intencao == 'verStatus') {
     fetch("https://api-cadastro.onrender.com/readClient") //API cadastro de produtos
