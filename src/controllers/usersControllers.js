@@ -16,11 +16,13 @@ const getAll = (req, res) =>{
 
 const readGet = async (req, res) => {
     try{
-   const allProd = await esquema.find() // o esquema do produto importado faz uma busca de todos os produtos no banco de dados
+
+       const allProd = await esquema.find() // o esquema do produto importado faz uma busca de todos os produtos no banco de dados
+       
    if (!allProd) {
     res.status(500).send({
     statusCode: 500,
-    message:err.message
+    message:err.message 
 })
 } 
 

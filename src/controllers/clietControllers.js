@@ -80,7 +80,26 @@ const getAll = async (req, res) => {
 
         const cliets = await esquema.find()
 
-        res.status(200).json({
+        if (!cliets) {
+            res.status(500).send({
+            statusCode: 500,
+            message:err.message 
+        })
+        } 
+        
+        res.status(200).send({
+            statusCode:200,
+            data:{
+            cliets,
+        }
+        }) 
+        
+        } catch (err) {
+            console.error(err)
+          }
+        }
+
+        /*res.status(200).json({
             statusCode: 200,
             message: "Buscando todos os clientes!",
             data: {
@@ -97,7 +116,7 @@ const getAll = async (req, res) => {
             }
         })
     }
-}
+}*/
 
 const getCliet = async (req, res) => {
     try {
