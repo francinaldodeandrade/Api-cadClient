@@ -1,19 +1,15 @@
 import express from 'express'
 const app = express()
 
+import axios from 'axios'
+
 import bodyParser from 'body-parser'
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
 //import Model from '../models/dialogflowSchema.js'
 
-/*fetch("https://api-cadastro.onrender.com/readClient") //API cadastro de produtos
-.then((response) => response.data.cliet())
-
-const Cliet = response.data.cliet
-
-console.log(Cliet)*/
-
+const Url_Cliet = ("https://api-cadastro.onrender.com/readClient") //API cadastro de clientes
 
 const readDialogflow = (req, res) =>{
   res.status(200).send({
@@ -41,25 +37,19 @@ const webhook_dialogflow = (req, res) =>{
    
   } else if (intencao == 'verCardapio') {
 
-    responder = `nosso cardápio está em fase de elaboração`
+    
+    responder = async function getAll(){
+        const Users = await axios.get(Url_Cliet)
+        return (Users.data.data.cliets.Name);
+     }
+    getAll()
 
   } else if (intencao == 'verStatus') {
 
     responder = `ainda não temos pedido`
 
   } 
-  
-  /*if (intencao == 'verStatus') {
-    fetch("https://api-cadastro.onrender.com/readClient") //API cadastro de produtos
-      .then((response) => response.json())
-      .then((res) => {
-      console.log(res.data.cliets)
-  })
-     
-    responder = res.data.cliets.Name
-    
-  }*/
-  
+
 
   const resposta = {
     "fulfillmentText": "resposta do Webhook",
@@ -75,9 +65,9 @@ const webhook_dialogflow = (req, res) =>{
     "source": "",
   }
 
-  console.log("responder final", resposta)
+ 
 
-  res.send(resposta);
+  res.send(resposta)
 
 } 
 
@@ -86,64 +76,4 @@ export default {
   readDialogflow
 }
 
-   /*switch(intencao) {
-    case 'VerCardapio': 
-      responder = Model.verCardapio( mensagem, parametros );
-      break;
-    case 'verStatus':
-      responder = Model.verStatus( mensagem, parametros );
-      break;
-    default: 
-      responder = {tipo: 'texto', mensagem: 'Sinto muito, não entendi o que você deseja'}
-  }
-
-
- let meuCardapio = [];
-  let menuItem = {};
-
-  for (let i=0; i<responder.cardapio.length; i++) {
-    menuItem = {
-        "card": {
-          "title": responder.cardapio[i].titulo,
-          "subtitle": responder.cardapio[i].preco,
-          "imageUri": responder.cardapio[i].url,
-        }
-    }
-    meuCardapio.push(menuItem)
-  }
-
-
-if ( responder.tipo == 'texto') {
-  responder = {
-    "fulfillmentText": "responder do Webhook",
-    "fulfillmentMessages": [
-      {
-        "text": {
-          "text": [
-            responder.mensagem
-          ]
-        }
-      }
-    ],
-    "source": "",
-  }
-} else if ( responder.tipo == 'imagem' ) {
-  responder = {
-    "fulfillmentText": "responder do Webhook",
-    "fulfillmentMessages": [
-      {
-        "image": {
-          "imageUri": responder.url,
-        }
-      }
-    ],
-    "source": "",
-  }
-} /*else if ( responder.tipo == 'card' ) {
-  responder = {
-    "fulfillmentText": "responder do Webhook",
-    "fulfillmentMessages":  meuCardapio,
-    "source": "",
-  }
-}*/
-
+ 
