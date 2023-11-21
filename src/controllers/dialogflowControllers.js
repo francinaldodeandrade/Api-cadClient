@@ -15,12 +15,14 @@ const Url_Cliet = ("https://api-cadastro.onrender.com/readClient") //API cadastr
 async function Clients() {
         const Users = await axios.get(Url_Cliet)
         const client = (Users.data.data.cliets)
-        client.map((el)=>console.log(el.Fone))
-        
+        client.map((el)=> {
+          return el.Name
+        })
+       
       }
 
 Clients()
-     
+
      
 
 const readDialogflow = (req, res) =>{
@@ -41,15 +43,13 @@ const webhook_dialogflow = (req, res) =>{
   const parametros = req.body.queryResult.parameters;
   const responder = ""
 
-  if (parametros && parametros.nao_Vendemos) {
-    responder = 'desculpa, ainda não trabalhamos'
-  }
-
   console.log(mensagem);
   console.log(intencao);
+  console.log(parametros);
+  console.log(responder);
 
 
-  /*if (parametros && parametros.nao_Vendemos) {
+  if (parametros && parametros.nao_Vendemos) {
 
     responder = `desculpe, nós não trabalhamos com ${parametros.nao_Vendemos}`
     
@@ -64,7 +64,9 @@ const webhook_dialogflow = (req, res) =>{
 
     responder = `ainda não temos pedido`
 
-  } */
+  } else if (intencao == 'verCliente') {
+    responder = Clients()
+  }
 
 
   const resposta = {
@@ -73,7 +75,7 @@ const webhook_dialogflow = (req, res) =>{
       {
         "text": {
           "text": [
-            'cheguei no webhook'
+           responder
           ]
         }
       }
