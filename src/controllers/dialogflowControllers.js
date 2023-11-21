@@ -9,13 +9,19 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 //import Model from '../models/dialogflowSchema.js'
 
+//const CEP = ("https://viacep.com.br/ws/04813220/json/") //API de cep
 const Url_Cliet = ("https://api-cadastro.onrender.com/readClient") //API cadastro de clientes
 
-async function getAll(){
+async function Clients() {
         const Users = await axios.get(Url_Cliet)
-        console.log (Users.data.data.cliets);
-     }
-    getAll()
+        const client = (Users.data.data.cliets)
+        client.map((el)=>console.log(el.Fone))
+        
+      }
+
+Clients()
+     
+     
 
 const readDialogflow = (req, res) =>{
   res.status(200).send({
@@ -30,13 +36,20 @@ const readDialogflow = (req, res) =>{
 
 const webhook_dialogflow = (req, res) =>{
   
-  const mensagem = req.body.queryResult.queryText;
+  const mensagem = req.body.queryResult.queryText; // o que o usuário escreveu
   const intencao = req.body.queryResult.intent.displayName;
   const parametros = req.body.queryResult.parameters;
   const responder = ""
 
-
   if (parametros && parametros.nao_Vendemos) {
+    responder = 'desculpa, ainda não trabalhamos'
+  }
+
+  console.log(mensagem);
+  console.log(intencao);
+
+
+  /*if (parametros && parametros.nao_Vendemos) {
 
     responder = `desculpe, nós não trabalhamos com ${parametros.nao_Vendemos}`
     
@@ -51,7 +64,7 @@ const webhook_dialogflow = (req, res) =>{
 
     responder = `ainda não temos pedido`
 
-  } 
+  } */
 
 
   const resposta = {
@@ -60,15 +73,13 @@ const webhook_dialogflow = (req, res) =>{
       {
         "text": {
           "text": [
-            responder
+            'cheguei no webhook'
           ]
         }
       }
     ],
     "source": "",
   }
-
- 
 
   res.send(resposta)
 
