@@ -13,18 +13,14 @@ app.use(bodyParser.urlencoded({extended: false}))
 const Url_Cliet = ("https://api-cadastro.onrender.com/readClient") //API cadastro de clientes
 
 async function Clients() {
-        const Users = await axios.get(Url_Cliet)
-        const client = (Users.data.data.cliets)
-        client.map((el)=> {
-          return el.Name
-        })
-       
+  const Users = await axios.get(Url_Cliet)
+  const client = (Users.data.data.cliets)
+  client.map((el) => {return (el.Name)})
+        
       }
 
 Clients()
-
      
-
 const readDialogflow = (req, res) =>{
   res.status(200).send({
   message:"comunicação com o dialogflow estabelecida com sucesso",
@@ -42,6 +38,10 @@ const webhook_dialogflow = (req, res) =>{
   const intencao = req.body.queryResult.intent.displayName;
   const parametros = req.body.queryResult.parameters;
   const responder = ""
+
+  if (parametros && parametros.nao_Vendemos) {
+    responder = 'desculpa, ainda não trabalhamos'
+  }
 
   console.log(mensagem);
   console.log(intencao);
@@ -75,7 +75,7 @@ const webhook_dialogflow = (req, res) =>{
       {
         "text": {
           "text": [
-           responder
+            'cheguei no webhook'
           ]
         }
       }

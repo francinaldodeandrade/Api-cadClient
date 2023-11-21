@@ -53,3 +53,7 @@ console.error(e);
 }
 
 URI = mongodb+srv://E-comerceTera:2310-Fas@cluster0.c1s6qzw.mongodb.net/
+
+const Users = await axios.get(Url_Cliet)
+const client = (Users.data.data.cliets)
+client.map((el)=> {return el.Name})
