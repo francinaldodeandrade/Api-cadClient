@@ -144,10 +144,10 @@ const getCliet = async (req, res) => {
 
 //Encontra o usuário pelo ID//
 const seaById = async (req, res) => {
-    //const Id = req.params.id
+    const Id = req.params.id
     try {
 
-        const cliet = await esquema.findOne({ _id: req.params.id })
+        const cliet = await esquema.findById({ _id: Id })
 
         res.status(200).json({
             
