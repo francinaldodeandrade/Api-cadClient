@@ -13,7 +13,7 @@ router.post("/login", authControllers.login)
 
 //router.get("/", clietControllers.getAll)
 router.get("/readClient", clietControllers.getCliet)
-router.get("/search/:id", authentication.validateToken, clietControllers.seaById)
+router.get("/search/:id", clietControllers.seaById)
 router.put("/update/:id", authentication.validateToken, clietControllers.updById)
 router.delete("/remove/:id", clietControllers.delById)
 

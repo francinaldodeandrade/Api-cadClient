@@ -15,8 +15,11 @@ const Url_Cliet = ("https://api-cadastro.onrender.com/readClient") //API cadastr
 async function Clients() {
   const Users = await axios.get(Url_Cliet)
   const client = (Users.data.data.cliets)
-  client.map((el) => {return (el.Name)})
-        
+  client.map((el) => {
+    //return (el.Name)
+    console.log(el)
+  })
+ 
       }
 
 Clients()

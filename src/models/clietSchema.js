@@ -44,7 +44,12 @@ const esquema = new Schema({
         
     },
 
-    City:{
+    street:{
+        type: String,
+        
+    },
+
+    number:{
         type: String,
         
     },
@@ -52,7 +57,19 @@ const esquema = new Schema({
     Neighborhood:{
         type: String,
         
+    },
+
+    City:{
+        type: String,
+        
+    },
+
+    State:{
+        type: String,
+        
     }
+
+    
 
 },
 
