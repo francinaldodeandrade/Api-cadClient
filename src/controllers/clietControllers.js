@@ -144,17 +144,15 @@ const getCliet = async (req, res) => {
 
 //Encontra o usuário pelo ID//
 const seaById = async (req, res) => {
-    const seaById = req.params.id
+    //const Id = req.params.id
     try {
 
-        const cliet = await esquema.findOne({ _id: Id })
+        const cliet = await esquema.findOne({ _id: req.params.id })
 
-        
-        console.log(req.params._id)
         res.status(200).json({
             
             statusCode: 200,
-            message: "Buscando cliente!",
+            message: "Cliente encotrado na base de dados!",
             data: {
                 cliet
             }
@@ -204,7 +202,7 @@ const updById = async (req, res) => {
 const delById = async (req, res) => {
     try {
 
-        const cliet = await esquema.findByIdAndRemove(req.params._id)
+        const cliet = await esquema.findByIdAndRemove({_id: req.params.id})
 
         if(cliet){
             res.status(200).json({

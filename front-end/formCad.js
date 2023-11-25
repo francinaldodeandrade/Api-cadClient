@@ -39,7 +39,7 @@ function buscarCep(){
 
 function buscarCliets(){
     const txtCompl = document.querySelector('#complemento').value
-    const apiCliets =`https://api-cadastro.onrender.com/search/${txtCompl}` 
+    const apiCliets =`https://api-cadastro.onrender.com/searchClient/${txtCompl}` 
     const name = document.querySelector('#rua')
     const fistname = document.querySelector('#numero')
     const redeSocial = document.querySelector('#bairro')
