@@ -146,7 +146,7 @@ const getCliet = async (req, res) => {
 const seaById = async (req, res) => {
     try {
 
-        const cliet = await esquema.findById(req.params.id).exec();
+        const cliet = await esquema.findById(req.params._id).exec();
 
         res.status(200).json({
             statusCode: 200,
