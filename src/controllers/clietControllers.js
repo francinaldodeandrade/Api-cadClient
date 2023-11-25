@@ -144,11 +144,15 @@ const getCliet = async (req, res) => {
 
 //Encontra o usuário pelo ID//
 const seaById = async (req, res) => {
+    const seaById = req.params.id
     try {
 
-        const cliet = await esquema.findById(req.params._id).exec();
+        const cliet = await esquema.findOne({ _id: Id })
 
+        
+        console.log(req.params._id)
         res.status(200).json({
+            
             statusCode: 200,
             message: "Buscando cliente!",
             data: {

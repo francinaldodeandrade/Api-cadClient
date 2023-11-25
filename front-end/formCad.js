@@ -52,12 +52,14 @@ function buscarCliets(){
 
     const Users = (resp.data.cliets)
 
-       Users.map((user)=>{
+    console.log(Users);
+
+      /* Users.map((user)=>{
             name.value = user.Name
             fistname.value = user.Sname
             redeSocial.value = user.RedeS
             fone.value = user.Fone 
-     })
+     })*/
      
     })
 }
