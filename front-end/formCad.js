@@ -39,7 +39,7 @@ function buscarCep(){
 
 function buscarCliets(){
     const txtCompl = document.querySelector('#complemento').value
-    const apiCliets =`https://api-cadastro.onrender.com/searchClient/${txtCompl}` 
+    const apiCliets =`https://api-cadastro.onrender.com/searchCliet/${txtCompl}` 
     const name = document.querySelector('#rua')
     const fistname = document.querySelector('#numero')
     const redeSocial = document.querySelector('#bairro')
@@ -50,9 +50,12 @@ function buscarCliets(){
     .then((retCliet) => retCliet.json())
     .then((resp) => {
 
-    const Users = (resp.data.cliets)
+    const Users = (resp.data.cliet)
 
-    console.log(Users);
+      name.value = Users.Name
+      fistname.value = Users.Sname
+      redeSocial.value = Users.RedeS
+      fone.value = Users.Fone 
 
       /* Users.map((user)=>{
             name.value = user.Name

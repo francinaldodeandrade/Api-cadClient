@@ -202,7 +202,8 @@ const updById = async (req, res) => {
 const delById = async (req, res) => {
     try {
 
-        const cliet = await esquema.findByIdAndRemove({_id: req.params.id})
+        const Id = req.params.id
+        const cliet = await esquema.findByIdAndRemove({_id: Id})
 
         if(cliet){
             res.status(200).json({
