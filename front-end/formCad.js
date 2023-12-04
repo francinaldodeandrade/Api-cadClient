@@ -9,8 +9,8 @@ window.onload =  function (){
     console.log('tirou o foco');
   })*/
 
-  cep.addEventListener('blur', buscarCep)
-  complemento.addEventListener('blur', buscarCliets)
+  //cep.addEventListener('blur', buscarCep)
+  id.addEventListener('blur', buscarCliet)
 
 }
 
@@ -37,13 +37,13 @@ function buscarCep(){
     })
 }
 
-function buscarCliets(){
+function buscarCliet(){
     const txtCompl = document.querySelector('#complemento').value
     const apiCliets =`https://api-cadastro.onrender.com/searchCliet/${txtCompl}` 
-    const name = document.querySelector('#rua')
-    const fistname = document.querySelector('#numero')
-    const redeSocial = document.querySelector('#bairro')
-    const fone = document.querySelector('#cidade')
+    const name = document.querySelector('#nome')
+    const firstName = document.querySelector('#sNome')
+    const redeSocial = document.querySelector('#redeSocial')
+    const fone = document.querySelector('#whatsapp')
    
    fetch (apiCliets)
     .catch((error) => console.log(error))
@@ -53,17 +53,19 @@ function buscarCliets(){
     const Users = (resp.data.cliet)
 
       name.value = Users.Name
-      fistname.value = Users.Sname
+      firstName.value = Users.Sname
       redeSocial.value = Users.RedeS
       fone.value = Users.Fone 
 
       /* Users.map((user)=>{
             name.value = user.Name
-            fistname.value = user.Sname
+            firstName.value = user.Sname
             redeSocial.value = user.RedeS
             fone.value = user.Fone 
      })*/
      
     })
 }
+
+
 

@@ -99,24 +99,6 @@ const getAll = async (req, res) => {
           }
         }
 
-        /*res.status(200).json({
-            statusCode: 200,
-            message: "Buscando todos os clientes!",
-            data: {
-                cliets
-            }
-        }).send( data.cliet)
-
-    } catch (error) {
-        res.status(500).json({
-            statusCode: 500,
-            message: "Lista de cliente não encontrada na base de dados",
-            data: {
-                error: error.message
-            }
-        })
-    }
-}*/
 
 const getCliet = async (req, res) => {
     try {
@@ -203,7 +185,7 @@ const delById = async (req, res) => {
     try {
 
         const Id = req.params.id
-        const cliet = await esquema.findByIdAndRemove({_id: Id})
+        const cliet = await esquema.findOneAndDelete({_id: Id})
 
         if(cliet){
             res.status(200).json({
