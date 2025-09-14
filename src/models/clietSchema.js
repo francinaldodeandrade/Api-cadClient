@@ -76,4 +76,4 @@ const esquema = new Schema({
    { timestamps: true } // armazena a data de cadastro
    );
    
-   export default mongoose.model("cliet", esquema); // o mongoose cria uma coleção para usuários no BD*/
+   export default mongoose.model("db_client", esquema); // o mongoose cria uma coleção para usuários no BD*/
