@@ -12,7 +12,7 @@ app.use(cors())
 import db from "./config/database.js";
 db.connect()
 
-const root = process.env.ROOT
+const root = process.env.ROOT || "/";
 
 import routesUser from "./routes/usersRoutes.js"
 app.use(root, routesUser)
